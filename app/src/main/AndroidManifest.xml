@@ -5,23 +5,49 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="ТЫЖПРОГРАММИСТ"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme"
+            android:label="">
+            <intent-filter>
+                <action android:name="app.mirea.ru.rtuapp.MainActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".GitLogin"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GitLogin" />
-        <activity android:name=".DeviceInfo" />
-        <activity android:name=".ApplicationMaps"></activity>
+
+        <activity
+            android:name=".DeviceInfo" >
+            <intent-filter>
+                <action android:name="app.mirea.ru.rtuapp.DeviceInfo" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ApplicationMaps">
+            <intent-filter>
+                <action android:name="app.mirea.ru.rtuapp.ApplicationMaps" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
