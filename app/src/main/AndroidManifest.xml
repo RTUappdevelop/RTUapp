@@ -63,15 +63,7 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".ApplicationMaps">
-            <intent-filter>
-                <action android:name="app.mirea.ru.rtuapp.ApplicationMaps" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-
-        </activity>
+        
 
         <activity
             android:name=".MapsActivity">
