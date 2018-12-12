@@ -19,9 +19,9 @@
             android:label="">
             <intent-filter>
                 <action android:name="app.mirea.ru.rtuapp.MainActivity" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
         </activity>
 
         <activity
@@ -33,6 +33,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
 
         <activity
             android:name=".DeviceInfo" >
@@ -47,6 +49,16 @@
             android:name=".ApplicationMaps">
             <intent-filter>
                 <action android:name="app.mirea.ru.rtuapp.ApplicationMaps" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name=".MapsActivity">
+            <intent-filter>
+                <action android:name="app.mirea.ru.rtuapp.MapsActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

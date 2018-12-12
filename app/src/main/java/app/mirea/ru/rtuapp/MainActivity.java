@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_maps) {
-            Intent intent = new Intent(MainActivity.this, ApplicationMaps.class);
+            Intent intent = new Intent(MainActivity.this, MapsActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_device_info) {
             Intent intent = new Intent(MainActivity.this, DeviceInfo.class);
