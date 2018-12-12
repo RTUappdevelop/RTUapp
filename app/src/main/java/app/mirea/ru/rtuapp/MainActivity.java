@@ -69,7 +69,11 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_device_info) {
             Intent intent = new Intent(MainActivity.this, DeviceInfo.class);
             startActivity(intent);
-        }///Здесь был субарист с субарином
+        }else if (id == R.id.nav_contacts) {
+            Intent intent = new Intent(MainActivity.this, Contacts.class);
+            startActivity(intent);
+        }
+        ///Здесь был субарист с субарином
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
