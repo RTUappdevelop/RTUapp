@@ -36,7 +36,6 @@ public class Contacts extends AppCompatActivity {
     public void getContactsIntoArrayList(){
 
         Cursor cursor;
-        Contact contact = new Contact();
         String name;
         String phoneNumber;
         String id;
@@ -46,6 +45,7 @@ public class Contacts extends AppCompatActivity {
                     null, null, null);
             if (cursor.getCount() > 0) {
                 while (cursor.moveToNext()) {
+                    Contact contact = new Contact();
                     id = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
                     name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
                     Log.i("Names", name);
