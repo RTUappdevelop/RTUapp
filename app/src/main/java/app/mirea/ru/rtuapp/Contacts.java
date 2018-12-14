@@ -5,30 +5,40 @@ import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import app.mirea.ru.rtuapp.adapters.ContactsAdapter;
 import app.mirea.ru.rtuapp.models.Contact;
 
 public class Contacts extends AppCompatActivity {
 
     List<Contact> StoreContacts = new ArrayList<>();
+    RecyclerView contacts;
+    ContactsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
+
         getContactsIntoArrayList();
+        contacts = findViewById(R.id.contacts_list);
+        adapter = new ContactsAdapter(this, StoreContacts);
+
+        contacts.setAdapter(adapter);
+
     }
 
     public void getContactsIntoArrayList(){
 
         Cursor cursor;
         Contact contact = new Contact();
-        String name = "";
-        String phoneNumber = "";
+        String name;
+        String phoneNumber;
         String id;
         ContentResolver cr = getContentResolver();
 

@@ -72,6 +72,9 @@ public class MainActivity extends AppCompatActivity
         }else if (id == R.id.nav_contacts) {
             Intent intent = new Intent(MainActivity.this, Contacts.class);
             startActivity(intent);
+        }else if (id == R.id.nav_camera) {
+            Intent intent = new Intent(MainActivity.this, CameraActivity.class);
+            startActivity(intent);
         }
         ///Здесь был субарист с субарином
 
