@@ -5,6 +5,7 @@ import android.content.ContentResolver;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -34,12 +35,13 @@ public class Contacts extends AppCompatActivity {
 
         int permissionStatus = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS);
 
+
         if (permissionStatus == PackageManager.PERMISSION_GRANTED) {
             getContactsIntoArrayList();
-        } else {
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_CONTACTS},
-                    REQUEST_CODE_PERMISSION_READ_CONTACTS);
         }
+
+
+
 
 
         contacts = findViewById(R.id.contacts_list);
@@ -87,4 +89,19 @@ public class Contacts extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_CODE_PERMISSION_READ_CONTACTS:
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission granted
+                    getContactsIntoArrayList();
+                } else {
+                    // permission denied
+                    System.out.println("PERMISSION_DENIED");
+                }
+                return;
+        }
+    }
 }
