@@ -1,7 +1,10 @@
 package app.mirea.ru.rtuapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -18,10 +21,9 @@ public class CameraActivity extends AppCompatActivity {
 
     Button mButton;
     ImageView mImage;
-    Uri mUri;
     Context mContext;
 
-    private static final int PHOTO_INTENT_REQUEST_CODE = 100;
+    private static final int SELECT_PICTURE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,38 +32,31 @@ public class CameraActivity extends AppCompatActivity {
 
         mContext = this;
 
-        mButton = (Button) findViewById(R.id.button);
-        mImage = (ImageView) findViewById(R.id.image);
+        mButton = findViewById(R.id.button);
+        mImage = findViewById(R.id.imageView2);
 
     mButton.setOnClickListener(new View.OnClickListener() {
         public void onClick(View v) {
-            mUri = generateFileUri();
-            if (mUri == null) {
-                Toast.makeText(mContext, "SD card not available", Toast.LENGTH_LONG).show();
-                return;
-            }
 
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, mUri);
-            startActivityForResult(intent, PHOTO_INTENT_REQUEST_CODE);
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+
+            startActivityForResult(Intent.createChooser(intent,"Select Picture"), SELECT_PICTURE);
             }
         } );
     }
 
-    private Uri generateFileUri() {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
-            return null;
-
-        File path = new File (Environment.getExternalStorageDirectory(), "CameraTest");
-        if (! path.exists()){
-            if (! path.mkdirs()){
-                return null;
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == SELECT_PICTURE) {
+                Uri selectedImageUri = data.getData();
+                
+                mImage.setImageURI(selectedImageUri);
             }
         }
 
-        String timeStamp = String.valueOf(System.currentTimeMillis());
-        File newFile = new File(path.getPath() + File.separator + timeStamp + ".jpg");
-        return Uri.fromFile(newFile);
     }
+
 }
