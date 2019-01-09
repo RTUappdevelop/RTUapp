@@ -40,11 +40,5 @@ public class DeviceInfo extends AppCompatActivity {
         TextView DevProduct = (TextView) findViewById(R.id.DevProduct);
         DevProduct.setText(Build.PRODUCT);
 
-        //setContentView(R.layout.activity_device_info);
-       // Log.i(TAG, "BRAND: " + Build.BRAND ); //имя бренда
-       // Log.i(TAG, "MANUFACTURER: " + Build.MANUFACTURER ); //производитель устройства
-       // Log.i(TAG, "MODEL: " + Build.MODEL ); //название продукта(модели)
-       // Log.i(TAG, "PRODUCT: " + Build.PRODUCT ); //имя продукта
-       // Log.i(TAG, "ID: " + Build.ID ); // id или номер списка изменений
     }
 }
