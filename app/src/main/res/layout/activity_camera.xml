@@ -36,8 +36,8 @@
         app:srcCompat="@drawable/common_google_signin_btn_icon_light_normal_background" />
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="368dp"
-        android:layout_height="173dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -45,24 +45,28 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.978">
+        app:layout_constraintVertical_bias="0.834">
 
         <TextView
-            android:id="@+id/textViewAzimuth"
+            android:id="@+id/xValue"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/common_google_signin_btn_text_dark_default" />
 
         <TextView
-            android:id="@+id/textViewPitch"
+            android:id="@+id/yValue"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/common_google_signin_btn_text_dark_default" />
 
         <TextView
-            android:id="@+id/textViewRoll"
+            android:id="@+id/zValue"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/common_google_signin_btn_text_dark_default" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

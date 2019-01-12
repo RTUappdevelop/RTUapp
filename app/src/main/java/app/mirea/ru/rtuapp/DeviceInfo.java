@@ -14,6 +14,8 @@ public class DeviceInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_device_info);
+        TextView Info = (TextView) findViewById(R.id.Info);
+        Info.setText("Device Information");
 
         TextView ID = (TextView) findViewById(R.id.ID);
         ID.setText("Android Device ID");

@@ -1,6 +1,7 @@
 package app.mirea.ru.rtuapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -9,6 +10,7 @@ import android.hardware.SensorManager;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,17 +18,16 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
-public class CameraActivity extends AppCompatActivity {
+public class CameraActivity extends AppCompatActivity implements SensorEventListener{
 
     Button mButton;
     ImageView mImage;
 
     private static final int SELECT_PICTURE = 100;
-    private SensorManager mSenManager;
-    private Sensor mAccelerometer;
-    private TextView mAzimuth;
-    private TextView mPitch;
-    private TextView mRoll;
+    private SensorManager sensorManager;
+    Sensor accelerometer;
+
+    TextView xValue, yValue, zValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +38,13 @@ public class CameraActivity extends AppCompatActivity {
         mImage = findViewById(R.id.imageView2);
 
 
-        mSenManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        mAccelerometer = mSenManager
-                .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensorManager.registerListener(CameraActivity.this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 
-        mAzimuth = findViewById(R.id.textViewAzimuth);
-        mPitch = findViewById(R.id.textViewPitch);
-        mRoll = findViewById(R.id.textViewRoll);
+        xValue = (TextView) findViewById(R.id.xValue);
+        yValue = (TextView) findViewById(R.id.yValue);
+        zValue = (TextView) findViewById(R.id.zValue);
 
     mButton.setOnClickListener(new View.OnClickListener() {
         public void onClick(View v) {
@@ -71,30 +72,16 @@ public class CameraActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        mSenManager.unregisterListener((SensorEventListener) this);
+    public void onAccuracyChanged(Sensor sensor, int i){
+
     }
+
     @Override
-    protected void onResume() {
-        super.onResume();
-        mSenManager.registerListener((SensorEventListener) this, mAccelerometer,
-                SensorManager.SENSOR_DELAY_NORMAL);
-    }
+    public void onSensorChanged(SensorEvent sensorEvent){
 
-    public void onAccuracyChanged(Sensor arg0, int arg1) {
-        // TODO Auto-generated method stub
-        // Не используется
-    }
-
-    public void onSensorChanged(SensorEvent event) {
-        float valueAzimuth = event.values[0];
-        float valuePitch = event.values[1];
-        float valueRoll = event.values[2];
-
-        mAzimuth.setText("Azimuth: " + String.valueOf(valueAzimuth));
-        mPitch.setText("Pitch: " + String.valueOf(valuePitch));
-        mRoll.setText("Roll: " + String.valueOf(valueRoll));
+        xValue.setText("xValue: " + sensorEvent.values[0]);
+        yValue.setText("yValue: " + sensorEvent.values[1]);
+        zValue.setText("zValue: " + sensorEvent.values[2]);
     }
 
 }
