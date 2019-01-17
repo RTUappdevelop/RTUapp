@@ -5,8 +5,6 @@ import android.content.ContentResolver;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,24 +23,16 @@ public class Contacts extends AppCompatActivity {
     RecyclerView contacts;
     ContactsAdapter adapter;
 
-    final int REQUEST_CODE_PERMISSION_READ_CONTACTS = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
 
-
         int permissionStatus = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS);
-
 
         if (permissionStatus == PackageManager.PERMISSION_GRANTED) {
             getContactsIntoArrayList();
         }
-
-
-
-
 
         contacts = findViewById(R.id.contacts_list);
         adapter = new ContactsAdapter(this, StoreContacts);
@@ -89,19 +79,4 @@ public class Contacts extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case REQUEST_CODE_PERMISSION_READ_CONTACTS:
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // permission granted
-                    getContactsIntoArrayList();
-                } else {
-                    // permission denied
-                    System.out.println("PERMISSION_DENIED");
-                }
-                return;
-        }
-    }
 }
