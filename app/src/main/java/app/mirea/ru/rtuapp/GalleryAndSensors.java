@@ -42,9 +42,9 @@ public class GalleryAndSensors extends AppCompatActivity implements SensorEventL
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sensorManager.registerListener(GalleryAndSensors.this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 
-        xValue = (TextView) findViewById(R.id.xValue);
-        yValue = (TextView) findViewById(R.id.yValue);
-        zValue = (TextView) findViewById(R.id.zValue);
+        xValue = findViewById(R.id.xValue);
+        yValue = findViewById(R.id.yValue);
+        zValue = findViewById(R.id.zValue);
 
         mButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -65,6 +65,7 @@ public class GalleryAndSensors extends AppCompatActivity implements SensorEventL
             if (requestCode == SELECT_PICTURE) {
                 Uri selectedImageUri = data.getData();
 
+                mImage.setVisibility(View.VISIBLE);
                 mImage.setImageURI(selectedImageUri);
             }
         }
