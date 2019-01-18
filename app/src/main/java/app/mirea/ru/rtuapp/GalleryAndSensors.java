@@ -27,7 +27,7 @@ public class GalleryAndSensors extends AppCompatActivity implements SensorEventL
     private SensorManager sensorManager;
     Sensor accelerometer;
 
-    TextView xValue, yValue, zValue;
+    TextView xValue, yValue, zValue, acceler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +45,7 @@ public class GalleryAndSensors extends AppCompatActivity implements SensorEventL
         xValue = findViewById(R.id.xValue);
         yValue = findViewById(R.id.yValue);
         zValue = findViewById(R.id.zValue);
+        acceler = findViewById(R.id.accel);
 
         mButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -80,9 +81,10 @@ public class GalleryAndSensors extends AppCompatActivity implements SensorEventL
     @Override
     public void onSensorChanged(SensorEvent sensorEvent){
 
-        xValue.setText("xValue: " + sensorEvent.values[0]);
-        yValue.setText("yValue: " + sensorEvent.values[1]);
-        zValue.setText("zValue: " + sensorEvent.values[2]);
+        acceler.setText("Параметры датчика Акселерометр");
+        xValue.setText("Первый параметр (x): " + sensorEvent.values[0]);
+        yValue.setText("Второй параметр (y): " + sensorEvent.values[1]);
+        zValue.setText("Третий параметр (z): " + sensorEvent.values[2]);
     }
 
 }
