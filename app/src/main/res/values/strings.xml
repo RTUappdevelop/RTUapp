@@ -7,4 +7,6 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_maps">Map</string>
+    <string name="client_id">a5e31db802f39efeb005</string>
+    <string name="client_secret">58b0406ed2f4d14ce5e20181cd2ed7fa61b9a15d</string>
 </resources>

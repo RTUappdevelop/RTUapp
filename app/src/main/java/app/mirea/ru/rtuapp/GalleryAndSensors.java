@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
-public class CameraActivity extends AppCompatActivity implements SensorEventListener{
+public class GalleryAndSensors extends AppCompatActivity implements SensorEventListener{
 
     Button mButton;
     ImageView mImage;
@@ -40,20 +40,20 @@ public class CameraActivity extends AppCompatActivity implements SensorEventList
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        sensorManager.registerListener(CameraActivity.this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(GalleryAndSensors.this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 
-        xValue = (TextView) findViewById(R.id.xValue);
-        yValue = (TextView) findViewById(R.id.yValue);
-        zValue = (TextView) findViewById(R.id.zValue);
+        xValue = findViewById(R.id.xValue);
+        yValue = findViewById(R.id.yValue);
+        zValue = findViewById(R.id.zValue);
 
-    mButton.setOnClickListener(new View.OnClickListener() {
-        public void onClick(View v) {
+        mButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
 
-            Intent intent = new Intent();
-            intent.setType("image/*");
-            intent.setAction(Intent.ACTION_GET_CONTENT);
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
 
-            startActivityForResult(Intent.createChooser(intent,"Select Picture"), SELECT_PICTURE);
+                startActivityForResult(Intent.createChooser(intent,"Select Picture"), SELECT_PICTURE);
             }
         } );
 
@@ -65,6 +65,7 @@ public class CameraActivity extends AppCompatActivity implements SensorEventList
             if (requestCode == SELECT_PICTURE) {
                 Uri selectedImageUri = data.getData();
 
+                mImage.setVisibility(View.VISIBLE);
                 mImage.setImageURI(selectedImageUri);
             }
         }

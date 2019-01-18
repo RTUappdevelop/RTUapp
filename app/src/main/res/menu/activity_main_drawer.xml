@@ -15,6 +15,6 @@
             android:title="Contacts" />
         <item
             android:id="@+id/nav_camera"
-            android:title="Camera and Sensors" />
+            android:title="Image and Sensors" />
     </group>
 </menu>
