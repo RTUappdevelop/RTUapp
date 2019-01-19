@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -21,10 +22,11 @@ import retrofit2.Response;
 
 import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
-public class GitLogin extends AppCompatActivity {
+public class GitLoginPresenter extends AppCompatActivity {
 
     private Button signIn;
     private Button skipAuth;
+    private TextView gitUserName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class GitLogin extends AppCompatActivity {
 
         signIn = findViewById(R.id.signIn);
         skipAuth = findViewById(R.id.skip_button);
+        gitUserName = findViewById(R.id.gitUserName);
 
 
         signIn.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +46,8 @@ public class GitLogin extends AppCompatActivity {
                         + getResources().getString(R.string.client_id)
                         + "&scope=repo&redirect_uri="
                         + "app.mirea.ru.rtuapp://callback";
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlRedirect));
+                Intent intent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(urlRedirect));
                 startActivity(intent);
             }
         });
@@ -52,7 +56,7 @@ public class GitLogin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(GitLogin.this, MainActivity.class);
+                Intent intent = new Intent(GitLoginPresenter.this, MainPresenter.class);
                 startActivity(intent);
             }
         });
@@ -80,7 +84,7 @@ public class GitLogin extends AppCompatActivity {
                     if (response.isSuccessful()) {
 
                         assert response.body() != null;
-                        Toast.makeText(GitLogin.this, "Токен = " + response.body().getToken(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(GitLoginPresenter.this, "Токен = " + response.body().getToken(), Toast.LENGTH_LONG).show();
                         App.setAccessToken(response.body().getToken());
                         App.setBaseServiceGenerator();
 
@@ -89,8 +93,9 @@ public class GitLogin extends AppCompatActivity {
                     } else {
 
                         Log.d(String.valueOf(LOG), "ошибка получения токена" + response.code());
-                        try {
+                        System.out.println("Error code " +  response.code());
 
+                        try {
                             assert response.errorBody() != null;
                             Log.d(String.valueOf(LOG), "ошибка получения токена " + response.errorBody().string());
 
@@ -103,6 +108,8 @@ public class GitLogin extends AppCompatActivity {
                 @Override
                 public void onFailure(@NonNull Call<Token> call, @NonNull Throwable t) {
                     t.printStackTrace();
+                    Toast.makeText(GitLoginPresenter.this,
+                            "Ошибка onFailure  " + t.getMessage(), Toast.LENGTH_LONG).show();
                 }
             });
         }
@@ -114,28 +121,23 @@ public class GitLogin extends AppCompatActivity {
 
             @Override
             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
-
                 if (response.isSuccessful()) {
                     assert response.body() != null;
+                    System.out.println("Логин " + response.body().getLogin());
                     App.setUsername(response.body().getLogin());
-
                     // если все ок, то отправляемся в мэйнактивити
-                    Intent intent = new Intent(GitLogin.this, MainActivity.class);
+                    Intent intent = new Intent(GitLoginPresenter.this, MainPresenter.class);
                     startActivity(intent);
                     finishAffinity();
 
                 } else {
-
                     try {
-
                         assert response.errorBody() != null;
                         Log.d(String.valueOf(LOG), "Ошибка получения имени" + response.errorBody().string());
-
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
-
             }
 
             @Override

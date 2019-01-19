@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#b0bec5"
-    tools:context=".GalleryAndSensors">
+    tools:context=".fragments.CameraFragment">
 
+    <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#b0bec5">
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
@@ -52,30 +59,27 @@
         app:layout_constraintVertical_bias="0.834">
 
         <TextView
-            android:id="@+id/accel"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="@color/common_google_signin_btn_text_dark_default"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="16sp" />
-
-        <TextView
             android:id="@+id/xValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/common_google_signin_btn_text_dark_default" />
+            android:text="xValue"
+            android:textColor="@color/common_google_signin_btn_text_dark_default" />
 
         <TextView
             android:id="@+id/yValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/common_google_signin_btn_text_dark_default" />
+            android:text="yValue"
+            android:textColor="@color/common_google_signin_btn_text_dark_default" />
 
         <TextView
             android:id="@+id/zValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/common_google_signin_btn_text_dark_default" />
+            android:text="zValue"
+            android:textColor="@color/common_google_signin_btn_text_dark_default" />
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+
+</FrameLayout>

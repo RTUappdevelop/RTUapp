@@ -32,9 +32,7 @@ public class ServiceGenerator {
                 okhttp3.Request.Builder builder = chain.request().newBuilder();
 
                 if (accessToken != null) {
-
                     builder.addHeader("Authorization", "token " + accessToken);
-
                 }
 
                 return chain.proceed(builder.build());
@@ -55,28 +53,17 @@ public class ServiceGenerator {
         gitApi = retrofit.create(GitApi.class);
     }
 
-
-
     // получаем репо пользователя
     public void getRepos(String userName, Callback<List<GitHubRepo>> callback) {
-
         gitApi.getReposForUser(userName).enqueue(callback);
-
     }
-
-
 
     // получаем токен
     public void getToken(String clientId, String clientSecret, String code, Callback<Token> callback) {
-
         gitApi.getToken(clientId, clientSecret, code).enqueue(callback);
-
     }
 
-
-
     //Получаем пользователя по токену
-
     public void getCurrentUser(Callback<User> callback) {
         gitApi.getCurrentUser().enqueue(callback);
     }

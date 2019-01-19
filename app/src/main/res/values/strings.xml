@@ -9,4 +9,9 @@
     <string name="title_activity_maps">Map</string>
     <string name="client_id">a5e31db802f39efeb005</string>
     <string name="client_secret">58b0406ed2f4d14ce5e20181cd2ed7fa61b9a15d</string>
+    <string name="token"></string>
+    <string name="username"></string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

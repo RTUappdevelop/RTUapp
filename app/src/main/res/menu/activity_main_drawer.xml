@@ -16,5 +16,8 @@
         <item
             android:id="@+id/nav_camera"
             android:title="Image and Sensors" />
+        <item
+            android:id="@+id/nav_repos"
+            android:title="Repositories" />
     </group>
 </menu>

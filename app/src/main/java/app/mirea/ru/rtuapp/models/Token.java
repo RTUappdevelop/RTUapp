@@ -11,11 +11,6 @@ public class Token {
     private String tokenType;
 
 
-
-
-
-
-
     public String getToken() {
 
         return accessToken;

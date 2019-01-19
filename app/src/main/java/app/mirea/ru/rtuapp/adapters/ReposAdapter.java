@@ -1,5 +1,6 @@
 package app.mirea.ru.rtuapp.adapters;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,49 +12,36 @@ import app.mirea.ru.rtuapp.R;
 import app.mirea.ru.rtuapp.models.GitHubRepo;
 
 
-public class ReposAdapter extends RecyclerView.Adapter<ReposAdapter.RepoViewHolder>{
+public class ReposAdapter extends RecyclerView.Adapter<ReposAdapter.ViewHolder>{
 
-    class RepoViewHolder extends RecyclerView.ViewHolder {
+    List<GitHubRepo> gitHubRepoList;
+    LayoutInflater inflater;
+
+    public ReposAdapter(Context context, List<GitHubRepo> gitHubRepoList) {
+        this.gitHubRepoList = gitHubRepoList;
+        this.inflater = LayoutInflater.from(context);
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder {
         private TextView repos_name;
-        private RepoViewHolder(View itemView) {
+        private ViewHolder(View itemView) {
             super(itemView);
-
             repos_name = itemView.findViewById(R.id.repos_name);
         }
     }
 
-    private List<GitHubRepo> gitHubRepoList;
 
-    public ReposAdapter(List<GitHubRepo> gitHubRepoList) {
-        this.gitHubRepoList = gitHubRepoList;
-    }
-
-    @NonNull
     @Override
-    public RepoViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_repositories,
-                viewGroup,
-                false);
-        return new RepoViewHolder(view);
-
+    public ReposAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = inflater.inflate(R.layout.list_repositories, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RepoViewHolder repoViewHolder, int i) {
-
-        repoViewHolder.repos_name.setText(gitHubRepoList.get(i).getName());
-
+    public void onBindViewHolder(@NonNull ReposAdapter.ViewHolder viewHolder, int position) {
+        viewHolder.repos_name.setText(gitHubRepoList.get(position).getName());
     }
 
     @Override
-    public int getItemCount() {
-
-        if (gitHubRepoList != null) {
-            return gitHubRepoList.size();
-        } else {
-            return 0;
-        }
-
-    }
+    public int getItemCount() {return gitHubRepoList.size(); }
 }

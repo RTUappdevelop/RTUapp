@@ -36,7 +36,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".MainPresenter"
             android:label=""
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -46,10 +46,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".GitLogin"
+            android:name=".GitLoginPresenter"
             android:theme="@style/AppTheme">
             <intent-filter>
-                <action android:name="app.mirea.ru.rtuapp.GitLogin" />
+                <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
@@ -60,35 +60,7 @@
 
             </intent-filter>
         </activity>
-        <activity android:name=".DeviceInfo">
-            <intent-filter>
-                <action android:name="app.mirea.ru.rtuapp.DeviceInfo" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".MapsActivity">
-            <intent-filter>
-                <action android:name="app.mirea.ru.rtuapp.MapsActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".Contacts">
-            <intent-filter>
-                <action android:name="app.mirea.ru.rtuapp.Contacts" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".GalleryAndSensors">
-            <intent-filter>
-                <action android:name="app.mirea.ru.rtuapp.GalletyAndSensors" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".WelcomeActivity">
+        <activity android:name=".WelcomePresenter">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
